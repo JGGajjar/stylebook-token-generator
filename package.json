@@ -1,6 +1,6 @@
 {
   "name": "stylebook-token-generator",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "A CLI to help generate the stylebook token for Liferay DXP 7.3+",
   "author": "JayGajjar[AG1806] <jpm4vr@gmail.com>",
   "license": "MIT",
