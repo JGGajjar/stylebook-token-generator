@@ -1,160 +1,172 @@
 /**
- * FileCopyrightText: Jay <jpm4vr@gmail.com>.
+ * FileCopyrightText: JayGajjar[AG1806] <jpm4vr@gmail.com>.
  * LicenseIdentifier: MIT
  */
 
-class ModalTokens {
-  #frontendTokenDefinitionJson = {
-    frontendTokenCategories: [],
-  };
+const organizationName = "AG1806";
 
-  #FrontendTokenCategories = {
-    frontendTokenSets: [],
-    label: "",
-    name: "",
-  };
+const welcomeMessage = "Welcome to stylebook generator for Liferay DXP and Portal CE 7.3+";
 
-  #FrontendTokenSets = {
-    frontendTokens: [],
-    name: "",
-    label: "",
-  };
+const frontendTokenDefinitionJson = {
+  frontendTokenCategories: [],
+};
 
-  #FrontendTokens = {
-    defaultValue: "",
-    editorType: "",
-    label: "",
-    mappings: [
-      {
-        type: "cssVariable",
-        value: "",
-      },
-    ],
-    name: "",
-    type: "",
-    validValues: [],
-  };
+const FrontendTokenCategories = {
+  frontendTokenSets: [],
+  label: "",
+  name: "",
+};
 
-  #FrontendTokenCategoriesQuestions = [
-    {
-      type: "text",
-      name: "label",
-      message: `Define \x1b[33mLabel\x1b[0m for "frontendTokenCategories".`,
-    },
-    {
-      type: "text",
-      name: "name",
-      message: `Define \x1b[33mName\x1b[0m for "frontendTokenCategories".`,
-      validate: (answer) => (+answer === 0 ? "Is required." : true),
-    },
-  ];
+const FrontendTokenSets = {
+  frontendTokens: [],
+  name: "",
+  label: "",
+};
 
-  #FrontendTokenSetsQuestions = [
+const FrontendTokens = {
+  defaultValue: "",
+  editorType: "",
+  label: "",
+  mappings: [
     {
-      type: "text",
-      name: "label",
-      message: `Define \x1b[33mLabel\x1b[0m for "frontendTokenSets".`,
+      type: "cssVariable",
+      value: "",
     },
-    {
-      type: "text",
-      name: "name",
-      message: `Define \x1b[33mName\x1b[0m for "frontendTokenSets".`,
-      validate: (answer) => (+answer === 0 ? "Is required." : true),
-    },
-  ];
+  ],
+  name: "",
+  type: "",
+  validValues: [],
+};
 
-  #FrontendTokensQuestions = [
-    {
-      type: "text",
-      name: "defaultValue",
-      message: "Define \x1b[33mdefaultValue\x1b[0m.",
-    },
-    {
-      type: "text",
-      name: "label",
-      message: "Define \x1b[33mlabel\x1b[0m.",
-    },
-    {
-      type: "text",
-      name: "name",
-      message: "Define \x1b[33mname\x1b[0m.",
-      validate: (answer) => (+answer === 0 ? "Is required." : true),
-    },
-    {
-      type: "list",
-      name: "type",
-      message: "Choose \x1b[33mfield type\x1b[0m.",
-      choices: ["Boolean", "Integer", "Number", "String"],
-    },
-    {
-      type: "text",
-      name: "cssVariable",
-      message: "Define mappings \x1b[33mcssVariable name\x1b[0m.",
-      validate: (answer) => (+answer === 0 ? "Is required." : true),
-    },
-  ];
+const FrontendTokenCategoriesQuestions = [
+  {
+    type: "text",
+    name: "label",
+    message: `Define \x1b[33mLabel\x1b[0m for "frontendTokenCategories".`,
+  },
+  {
+    type: "text",
+    name: "name",
+    message: `Define \x1b[33mName\x1b[0m for "frontendTokenCategories".`,
+    validate: (answer) => (+answer === 0 ? "Is required." : true),
+  },
+];
 
-  #EditorTypeQuestion = {
+const FrontendTokenSetsQuestions = [
+  {
+    type: "text",
+    name: "label",
+    message: `Define \x1b[33mLabel\x1b[0m for "frontendTokenSets".`,
+  },
+  {
+    type: "text",
+    name: "name",
+    message: `Define \x1b[33mName\x1b[0m for "frontendTokenSets".`,
+    validate: (answer) => (+answer === 0 ? "Is required." : true),
+  },
+];
+
+const FrontendTokensQuestions = [
+  {
+    type: "text",
+    name: "defaultValue",
+    message: "Define \x1b[33mdefaultValue\x1b[0m.",
+  },
+  {
+    type: "text",
+    name: "label",
+    message: "Define \x1b[33mlabel\x1b[0m.",
+  },
+  {
+    type: "text",
+    name: "name",
+    message: "Define \x1b[33mname\x1b[0m.",
+    validate: (answer) => (+answer === 0 ? "Is required." : true),
+  },
+  {
     type: "list",
-    name: "editorType",
-    message: "Choose \x1b[33meditorType\x1b[0m.",
-    choices: ["ColorPicker", "Text", "Checkbox", "Select"],
-  };
+    name: "type",
+    message: "Choose \x1b[33mfield type\x1b[0m.",
+    choices: ["Boolean", "Integer", "Number", "String"],
+  },
+  {
+    type: "text",
+    name: "cssVariable",
+    message: "Define mappings \x1b[33mcssVariable name\x1b[0m.",
+    validate: (answer) => (+answer === 0 ? "Is required." : true),
+  },
+];
 
-  #EditorTypeOptionQuestion = [
-    {
-      type: "text",
-      name: "label",
-      message: `Define \x1b[33mLabel\x1b[0m of Option.`,
-    },
-    {
-      type: "text",
-      name: "value",
-      message: `Define \x1b[33mValue\x1b[0m for Option.`,
-      validate: (answer) => (+answer === 0 ? "Is required." : true),
-    },
-    {
-      type: "confirm",
-      name: "editorTypeSelectConfirm",
-      message: `Add More Option.`,
-      default: false,
-    },
-  ];
+const EditorTypeQuestion = {
+  type: "list",
+  name: "editorType",
+  message: "Choose \x1b[33meditorType\x1b[0m.",
+  choices: ["ColorPicker", "Text", "Checkbox", "Select"],
+};
 
-  get _frontendTokenDefinitionJson() {
-    return this.#frontendTokenDefinitionJson;
+const EditorTypeOptionQuestion = [
+  {
+    type: "text",
+    name: "label",
+    message: `Define \x1b[33mLabel\x1b[0m of Option.`,
+  },
+  {
+    type: "text",
+    name: "value",
+    message: `Define \x1b[33mValue\x1b[0m for Option.`,
+    validate: (answer) => (+answer === 0 ? "Is required." : true),
+  },
+  {
+    type: "confirm",
+    name: "editorTypeSelectConfirm",
+    message: `Add More Option.`,
+    default: false,
+  },
+];
+
+class ModalTokens {
+  static get _organizationName() {
+    return organizationName;
   }
 
-  get _frontendTokenCategories() {
-    return this.#FrontendTokenCategories;
+  static get _welcomeMessage() {
+    return welcomeMessage;
   }
 
-  get _frontendTokenSets() {
-    return this.#FrontendTokenSets;
+  static get _frontendTokenDefinitionJson() {
+    return frontendTokenDefinitionJson;
   }
 
-  get _frontendTokens() {
-    return this.#FrontendTokens;
+  static get _frontendTokenCategories() {
+    return FrontendTokenCategories;
   }
 
-  get _frontendTokenCategoriesQuestions() {
-    return this.#FrontendTokenCategoriesQuestions;
+  static get _frontendTokenSets() {
+    return FrontendTokenSets;
   }
 
-  get _frontendTokenSetsQuestions() {
-    return this.#FrontendTokenSetsQuestions;
+  static get _frontendTokens() {
+    return FrontendTokens;
   }
 
-  get _frontendTokensQuestions() {
-    return this.#FrontendTokensQuestions;
+  static get _frontendTokenCategoriesQuestions() {
+    return FrontendTokenCategoriesQuestions;
   }
 
-  get _editorTypeQuestion() {
-    return this.#EditorTypeQuestion;
+  static get _frontendTokenSetsQuestions() {
+    return FrontendTokenSetsQuestions;
   }
 
-  get _editorTypeOptionQuestion() {
-    return this.#EditorTypeOptionQuestion;
+  static get _frontendTokensQuestions() {
+    return FrontendTokensQuestions;
+  }
+
+  static get _editorTypeQuestion() {
+    return EditorTypeQuestion;
+  }
+
+  static get _editorTypeOptionQuestion() {
+    return EditorTypeOptionQuestion;
   }
 }
 

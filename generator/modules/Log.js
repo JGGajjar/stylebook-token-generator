@@ -1,5 +1,5 @@
 /**
- * FileCopyrightText: Jay <jpm4vr@gmail.com>.
+ * FileCopyrightText: JayGajjar[AG1806] <jpm4vr@gmail.com>.
  * LicenseIdentifier: MIT
  */
 
@@ -12,7 +12,7 @@ class Log {
       }
       console.log(strObj + "\n");
     })("-");
-    console.log("> JSON Status:");
+    console.log("> frontend-token-definition.json Status:");
     (function (charObj) {
       let strObj = "\n";
       for (let i = 0; i < 150; i++) {

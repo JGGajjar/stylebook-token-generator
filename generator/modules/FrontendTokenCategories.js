@@ -1,5 +1,5 @@
 /**
- * FileCopyrightText: Jay <jpm4vr@gmail.com>.
+ * FileCopyrightText: JayGajjar[AG1806] <jpm4vr@gmail.com>.
  * LicenseIdentifier: MIT
  */
 
@@ -12,16 +12,16 @@ class FrontendTokenCategories {
   constructor(configJson) {
     this.finalConfig = configJson;
 
-    this.setObject = (finalConfig, modalObj, getAns) => FrontendTokenCategories._setObject(finalConfig, modalObj, getAns);
+    this.setObject = (finalConfig, ModalObj, getAns) => FrontendTokenCategories._setObject(finalConfig, ModalObj, getAns);
 
     this.addFrontendCategory = () => FrontendTokenCategories._addFrontendCategory();
 
     this.addFrontendTokenSet = (categoryLabel) => FrontendTokenCategories._addFrontendTokenSet(categoryLabel);
   }
 
-  static _setObject = (curObj, modalObj, ansObj) => {
+  static _setObject = (curObj, ModalObj, ansObj) => {
     return curObj.frontendTokenCategories.push({
-      ...modalObj,
+      ...ModalObj,
       ...ansObj,
     });
   };
@@ -54,9 +54,9 @@ class FrontendTokenCategories {
     try {
       let thisObj = this;
 
-      let modalObj = new ModalObj()._frontendTokenCategories;
+      let modalObj = ModalObj._frontendTokenCategories;
 
-      let questions = new ModalObj()._frontendTokenCategoriesQuestions;
+      let questions = ModalObj._frontendTokenCategoriesQuestions;
 
       let getAns = await inquirer.prompt(questions).then((answers) => answers);
 

@@ -1,5 +1,5 @@
 /**
- * FileCopyrightText: Jay <jpm4vr@gmail.com>.
+ * FileCopyrightText: JayGajjar[AG1806] <jpm4vr@gmail.com>.
  * LicenseIdentifier: MIT
  */
 
@@ -47,9 +47,8 @@ class StylebookConfig {
   };
 
   static _buildConfig = async () => {
-    let modalObj = new ModalObj();
-    Log.print(JSON.stringify(modalObj._frontendTokenDefinitionJson, null, 2));
-    return await new FrontendTokenCategories(modalObj._frontendTokenDefinitionJson).init();
+    Log.print(JSON.stringify(ModalObj._frontendTokenDefinitionJson, null, 2));
+    return await new FrontendTokenCategories(ModalObj._frontendTokenDefinitionJson).init();
   };
 
   static _overwriteFile = async () => {
@@ -79,6 +78,15 @@ class StylebookConfig {
           name: "folderdir",
           message: `Enter the path to your [Theme Name]-theme directory:`,
           default: `${process.cwd()}\\[Theme Name]-theme\\`,
+          validate: (answer) => {
+            try {
+              if (fileSystem.lstatSync(answer).isDirectory()) {
+                return true;
+              }
+            } catch (error) {
+              return '"' + answer + '"' + " does not exist";
+            }
+          },
         },
       ])
       .then((answers) => answers.folderdir);
@@ -100,7 +108,6 @@ class StylebookConfig {
   };
 
   init = async () => {
-    Log.message(`Welcome to stylebook generator for Liferay DXP and Portal CE 7.3.`);
     try {
       let thisObj = this;
 

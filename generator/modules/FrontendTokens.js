@@ -1,5 +1,5 @@
 /**
- * FileCopyrightText: Jay <jpm4vr@gmail.com>.
+ * FileCopyrightText: JayGajjar[AG1806] <jpm4vr@gmail.com>.
  * LicenseIdentifier: MIT
  */
 
@@ -19,7 +19,7 @@ class FrontendTokens {
   }
 
   static _getEditorType = async (questionObj, tokenQuestion, jsonObj) => {
-    let editorOptionQuestion = new ModalObj()._editorTypeOptionQuestion;
+    let editorOptionQuestion = ModalObj._editorTypeOptionQuestion;
 
     let getEditorTyep = await inquirer.prompt(questionObj).then((answers) => answers);
 
@@ -96,13 +96,11 @@ class FrontendTokens {
     try {
       let thisObj = this;
 
-      let modalTokenObj = new ModalObj();
+      let modalObj = ModalObj._frontendTokens;
 
-      let modalObj = modalTokenObj._frontendTokens;
+      let editorTypeQuestion = ModalObj._editorTypeQuestion;
 
-      let editorTypeQuestion = modalTokenObj._editorTypeQuestion;
-
-      let tokenQuestion = modalTokenObj._frontendTokensQuestions;
+      let tokenQuestion = ModalObj._frontendTokensQuestions;
 
       let getAnswers = await thisObj.getAnswers(editorTypeQuestion, tokenQuestion, modalObj);
 

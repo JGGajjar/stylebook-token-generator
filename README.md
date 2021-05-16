@@ -21,15 +21,25 @@ Token categories will crate grouped of categorie's options in the drop-down menu
 | name  | Filed required unique name for each Token categories.                     |
 
 ```
+? Define Label for "frontendTokenCategories". buttons
+? Define Name for "frontendTokenCategories". buttons
+
+----------------------------------------------------------------------------------------
+
+> JSON Status:
+
+----------------------------------------------------------------------------------------
+
 {
-    "frontendTokenCategories": [
-        {
-            "frontendTokenSets": [],
-            "label": "buttons",
-            "name": "buttons"
-        }
-    ]
+  "frontendTokenCategories": [
+    {
+      "frontendTokenSets": [],
+      "label": "buttons",
+      "name": "buttons"
+    }
+  ]
 }
+
 ```
 
 2. Token Sets `frontendTokenSets`
@@ -42,21 +52,36 @@ Token Sets will create collapsible options menu for each Token Categories.
 | name  | Required unique name for each Token Sets.                              |
 
 ```
+? Would you like to add new frontendTokenSets for "buttons" frontendTokenCategories? Yes
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+? Define Label for "frontendTokenSets". primary-buttons
+? Define Name for "frontendTokenSets". primary-buttons
+
+----------------------------------------------------------------------------------------
+
+> JSON Status:
+
+----------------------------------------------------------------------------------------
+
 {
-    "frontendTokenCategories": [
+  "frontendTokenCategories": [
+    {
+      "frontendTokenSets": [
         {
-            "frontendTokenSets": [
-                {
-                    "frontendTokens": [],
-                    "label": "primary-buttons",
-                    "name": "primaryButtons"
-                }
-            ],
-            "label": "buttons",
-            "name": "buttons"
+          "frontendTokens": [],
+          "name": "primary-buttons",
+          "label": "primary-buttons"
         }
-    ]
+      ],
+      "label": "buttons",
+      "name": "buttons"
+    }
+  ]
 }
+
+----------------------------------------------------------------------------------------
 ```
 
 3. Tokens `frontendTokens`
@@ -74,41 +99,138 @@ Token of each Token Sets will provided set of configurable properties for styleb
 | validValues  | It will create options for drop-down menu of Selectable `editorType`.                                                                  |
 
 ```
-"frontendTokens": [
+? Would you like to add new "frontendTokens" for "primary-buttons" "frontendTokenSets"? Yes
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+? Choose editorType. ColorPicker
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+? Define defaultValue. #5B443E
+? Define label. Primary
+? Define name. primaryColor
+? Choose field type. String
+? Define mappings cssVariable name. --bg-primary
+
+----------------------------------------------------------------------------------------
+
+> JSON Status:
+
+----------------------------------------------------------------------------------------
+
+{
+  "frontendTokenCategories": [
     {
-        "defaultValue": "#5B443E",
-        "editorType": "ColorPicker",
-        "label": "Primary",
-        "mappings": [
+      "frontendTokenSets": [
+        {
+          "frontendTokens": [
             {
-                "type": "cssVariable",
-                "value": "--bg-primary"
+              "defaultValue": "#5B443E",
+              "editorType": "ColorPicker",
+              "label": "Primary",
+              "mappings": [
+                {
+                  "type": "cssVariable",
+                  "value": "--bg-primary"
+                }
+              ],
+              "name": "primaryColor",
+              "type": "String"
             }
-        ],
-        "name": "primaryColor",
-        "type": "String"
-    },
+          ],
+          "name": "primary-buttons",
+          "label": "primary-buttons"
+        }
+      ],
+      "label": "buttons",
+      "name": "buttons"
+    }
+  ]
+}
+
+----------------------------------------------------------------------------------------
+
+? Would you like to add new "frontendTokens"? Yes
+? Choose editorType. Select
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+? Define Label of Option. 16px
+? Define Value for Option. --fs-1
+? Add More Option. Yes
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+? Define Label of Option. 32px
+? Define Value for Option. --fs-2
+? Add More Option. No
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+? Define defaultValue. --fs-1
+? Define label. Font Size
+? Define name. fontSize
+? Choose field type. String
+? Define mappings cssVariable name. --pb-fs
+
+----------------------------------------------------------------------------------------
+
+> JSON Status:
+
+----------------------------------------------------------------------------------------
+
+{
+  "frontendTokenCategories": [
     {
-        "defaultValue": "--fs-1",
-        "label": "Font Size",
-        "mappings": [
+      "frontendTokenSets": [
+        {
+          "frontendTokens": [
             {
-                "type": "cssVariable",
-                "value": "--pb-fs"
-            }
-        ],
-        "name": "fontSize",
-        "type": "String",
-        "validValues": [
-            {
-                "label": "16px",
-                "value": "--fs-1"
+              "defaultValue": "#5B443E",
+              "editorType": "ColorPicker",
+              "label": "Primary",
+              "mappings": [
+                {
+                  "type": "cssVariable",
+                  "value": "--bg-primary"
+                }
+              ],
+              "name": "primaryColor",
+              "type": "String"
             },
             {
-                "label": "32px",
-                "value": "--fs-2"
+              "defaultValue": "--fs-1",
+              "label": "Font Size",
+              "mappings": [
+                {
+                  "type": "cssVariable",
+                  "value": "--pb-fs"
+                }
+              ],
+              "name": "fontSize",
+              "type": "String",
+              "validValues": [
+                {
+                  "label": "16px",
+                  "value": "--fs-1"
+                },
+                {
+                  "label": "32px",
+                  "value": "--fs-2"
+                }
+              ]
             }
-        ]
+          ],
+          "name": "primary-buttons",
+          "label": "primary-buttons"
+        }
+      ],
+      "label": "buttons",
+      "name": "buttons"
     }
-]
+  ]
+}
+
+----------------------------------------------------------------------------------------
 ```
