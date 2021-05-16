@@ -12,7 +12,7 @@ class Log {
       }
       console.log(strObj + "\n");
     })("-");
-    console.log("> frontend-token-definition.json Status:");
+    console.log("> frontend-token-definition jSON Status:");
     (function (charObj) {
       let strObj = "\n";
       for (let i = 0; i < 150; i++) {
