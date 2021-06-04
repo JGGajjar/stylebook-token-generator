@@ -1,8 +1,8 @@
 {
   "name": "stylebook-token-generator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A CLI to help generate the stylebook token for Liferay DXP 7.3+",
-  "author": "JayGajjar[AG1806] <jpm4vr@gmail.com>",
+  "author": "JayGajjar <jaygajjar29@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/JGGajjar/stylebook-token-generator",
   "scripts": {
@@ -12,5 +12,11 @@
     "chalk": "^4.1.1",
     "figlet": "^1.5.0",
     "inquirer": "^8.0.0"
-  }
+  },
+  "keywords": [
+    "stylebook",
+    "Liferay DXP 7.3",
+    "package",
+    "generator"
+  ]
 }

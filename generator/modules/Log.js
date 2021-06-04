@@ -1,5 +1,5 @@
 /**
- * FileCopyrightText: JayGajjar[AG1806] <jpm4vr@gmail.com>.
+ * FileCopyrightText: JayGajjar <jaygajjar29@gmail.com>.
  * LicenseIdentifier: MIT
  */
 

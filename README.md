@@ -26,7 +26,7 @@ Token categories will crate grouped of categorie's options in the drop-down menu
 
 ----------------------------------------------------------------------------------------
 
-> JSON Status:
+> frontend-token-definition jSON Status:
 
 ----------------------------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ Token Sets will create collapsible options menu for each Token Categories.
 
 ----------------------------------------------------------------------------------------
 
-> JSON Status:
+> frontend-token-definition jSON Status:
 
 ----------------------------------------------------------------------------------------
 
@@ -115,7 +115,7 @@ Token of each Token Sets will provided set of configurable properties for styleb
 
 ----------------------------------------------------------------------------------------
 
-> JSON Status:
+> frontend-token-definition jSON Status:
 
 ----------------------------------------------------------------------------------------
 
@@ -176,7 +176,7 @@ Token of each Token Sets will provided set of configurable properties for styleb
 
 ----------------------------------------------------------------------------------------
 
-> JSON Status:
+> frontend-token-definition jSON Status:
 
 ----------------------------------------------------------------------------------------
 
