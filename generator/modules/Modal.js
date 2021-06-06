@@ -3,7 +3,7 @@
  * LicenseIdentifier: MIT
  */
 
-const organizationName = "AG1806";
+const organizationName = "stylebook";
 
 const welcomeMessage = "Welcome to stylebook generator for Liferay DXP and Portal CE 7.3+";
 
