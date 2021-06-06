@@ -3,6 +3,9 @@
   "version": "1.2.2",
   "description": "A CLI to help generate the stylebook token for Liferay DXP 7.3+",
   "main": "./bin/stylebook.js",
+  "bin": {
+    "stylebook": "./bin/stylebook.js"
+  },
   "scripts": {
     "stylebook": "node ./bin/stylebook.js",
     "test": "echo \"Error: no test specified\" && exit 1"
