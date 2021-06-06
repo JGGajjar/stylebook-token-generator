@@ -19,9 +19,9 @@ class FrontendTokens {
   }
 
   static _getEditorType = async (questionObj, tokenQuestion, jsonObj) => {
-    let editorOptionQuestion = ModalObj._editorTypeOptionQuestion;
+    const editorOptionQuestion = ModalObj._editorTypeOptionQuestion;
 
-    let getEditorTyep = await inquirer.prompt(questionObj).then((answers) => answers);
+    const getEditorTyep = await inquirer.prompt(questionObj).then((answers) => answers);
 
     if (getEditorTyep.editorType.toLowerCase() === "Checkbox".toLowerCase()) {
       tokenQuestion.filter((Obj) => {
@@ -49,19 +49,18 @@ class FrontendTokens {
 
   static _getEditorTypeSelectOption = async (questionObj, Obj) => {
     Log.line("~");
-    let getAns = await inquirer.prompt(questionObj).then((answers) => answers);
+    const getAns = await inquirer.prompt(questionObj).then((answers) => answers);
 
     Obj.push(Object.fromEntries(Object.entries(getAns).filter((key) => key[0] != "editorTypeSelectConfirm")));
 
     getAns.editorTypeSelectConfirm && (await FrontendTokens._getEditorTypeSelectOption(questionObj, Obj));
   };
 
-  static _getAnswers = async (editorQuestionObj, tokenQuestion, jsonObj) => {
-    return await FrontendTokens._getEditorType(editorQuestionObj, tokenQuestion, jsonObj).then(async () => {
+  static _getAnswers = async (editorQuestionObj, tokenQuestion, jsonObj) =>
+    await FrontendTokens._getEditorType(editorQuestionObj, tokenQuestion, jsonObj).then(async () => {
       Log.line("~");
       return await inquirer.prompt(tokenQuestion).then((answers) => answers);
     });
-  };
 
   static _setFinalJson = (mainObj, tempObj, curObj) => {
     tempObj.mappings[0].value = curObj.cssVariable;
@@ -80,8 +79,8 @@ class FrontendTokens {
     });
   };
 
-  static _getConfirmation = async () => {
-    return await inquirer
+  static _getConfirmation = async () =>
+    await inquirer
       .prompt([
         {
           type: "confirm",
@@ -90,25 +89,24 @@ class FrontendTokens {
         },
       ])
       .then((answers) => answers.addnewtokens);
-  };
 
   init = async () => {
     try {
-      let thisObj = this;
+      const thisObj = this;
 
-      let modalObj = ModalObj._frontendTokens;
+      const modalObj = ModalObj._frontendTokens;
 
-      let editorTypeQuestion = ModalObj._editorTypeQuestion;
+      const editorTypeQuestion = ModalObj._editorTypeQuestion;
 
-      let tokenQuestion = ModalObj._frontendTokensQuestions;
+      const tokenQuestion = ModalObj._frontendTokensQuestions;
 
-      let getAnswers = await thisObj.getAnswers(editorTypeQuestion, tokenQuestion, modalObj);
+      const getAnswers = await thisObj.getAnswers(editorTypeQuestion, tokenQuestion, modalObj);
 
       thisObj.setFinalJson(thisObj.finalConfig, modalObj, getAnswers);
 
       Log.print(JSON.stringify(thisObj.finalConfig, null, 2));
 
-      let isAddFrontendTokens = await thisObj.getConfirmation();
+      const isAddFrontendTokens = await thisObj.getConfirmation();
 
       if (isAddFrontendTokens) {
         await thisObj.init();

@@ -27,18 +27,17 @@ class StylebookConfig {
   static _fileName = (flag) => {
     if (flag) {
       return `frontend-token-definition-${Math.floor(Date.now() / 1000)}.json`;
-    } else {
-      return "frontend-token-definition.json";
     }
+    return "frontend-token-definition.json";
   };
 
   static _writeJsonFile = (folderPath, filename, jsonObj) => {
     try {
-      let filePath = fileSystem.existsSync(folderPath + "\\src") ? folderPath + "\\src\\WEB-INF\\" + filename : folderPath + "\\" + filename;
+      const filePath = fileSystem.existsSync(`${folderPath}\\src`) ? `${folderPath}\\src\\WEB-INF\\${filename}` : `${folderPath}\\${filename}`;
       fileSystem.writeFileSync(`${filePath}`, JSON.stringify(jsonObj, null, 4));
       Log.message(
         `\x1b[34m${filePath}\x1b[0m file generated${
-          fileSystem.existsSync(folderPath + "\\src") ? "." : ",\n> Move \x1b[34m" + filename + "\x1b[0m file inside [theme-name]-theme\\src\\WEB-INF\\ directory and deploy theme."
+          fileSystem.existsSync(`${folderPath}\\src`) ? "." : `,\n> Move \x1b[34m${filename}\x1b[0m file inside [theme-name]-theme\\src\\WEB-INF\\ directory and deploy theme.`
         }\n\n> Thank You!!`
       );
     } catch (e) {
@@ -52,8 +51,8 @@ class StylebookConfig {
   };
 
   static _overwriteFile = async () => {
-    let overwriteChoices = ["Overwrite.", "Keep existing & create a new file.", "Abort"];
-    let overwriteAns = await inquirer
+    const overwriteChoices = ["Overwrite.", "Keep existing & create a new file.", "Abort"];
+    const overwriteAns = await inquirer
       .prompt([
         {
           type: "rawlist",
@@ -65,13 +64,13 @@ class StylebookConfig {
       .then((answers) => answers);
 
     return {
-      status: overwriteChoices.indexOf(overwriteAns.overwrite) !== 2 ? true : false,
+      status: overwriteChoices.indexOf(overwriteAns.overwrite) !== 2,
       flag: overwriteChoices.indexOf(overwriteAns.overwrite),
     };
   };
 
-  static _getFolderdir = async () => {
-    return await inquirer
+  static _getFolderdir = async () =>
+    await inquirer
       .prompt([
         {
           type: "text",
@@ -84,37 +83,34 @@ class StylebookConfig {
                 return true;
               }
             } catch (error) {
-              return '"' + answer + '"' + " does not exist";
+              return `${answer} does not exist`;
             }
           },
         },
       ])
       .then((answers) => answers.folderdir);
-  };
 
   static _isFileexists = async (thisObj) => {
-    if (fileSystem.existsSync(process.cwd() + "\\src\\WEB-INF\\frontend-token-definition.json")) {
-      let isoverwrite = await thisObj.overwriteFile();
+    if (fileSystem.existsSync(`${process.cwd()}\\src\\WEB-INF\\frontend-token-definition.json`)) {
+      const isoverwrite = await thisObj.overwriteFile();
       return { status: true, dir: process.cwd(), isOverwrite: isoverwrite };
-    } else {
-      let getFolderdir = await thisObj.getFolderdir();
-      if (fileSystem.existsSync(getFolderdir + "\\src\\WEB-INF\\frontend-token-definition.json") || fileSystem.existsSync(getFolderdir + "\\frontend-token-definition.json")) {
-        let isoverwrite = await thisObj.overwriteFile();
-        return { status: true, dir: getFolderdir, isOverwrite: isoverwrite };
-      } else {
-        return { status: false, dir: getFolderdir, isOverwrite: { status: false, flag: 0 } };
-      }
     }
+    const getFolderdir = await thisObj.getFolderdir();
+    if (fileSystem.existsSync(`${getFolderdir}\\src\\WEB-INF\\frontend-token-definition.json`) || fileSystem.existsSync(`${getFolderdir}\\frontend-token-definition.json`)) {
+      const isoverwrite = await thisObj.overwriteFile();
+      return { status: true, dir: getFolderdir, isOverwrite: isoverwrite };
+    }
+    return { status: false, dir: getFolderdir, isOverwrite: { status: false, flag: 0 } };
   };
 
   init = async () => {
     try {
-      let thisObj = this;
+      const thisObj = this;
 
-      let isFileexists = await thisObj.isFileexists(thisObj);
+      const isFileexists = await thisObj.isFileexists(thisObj);
 
       if (isFileexists.isOverwrite.flag != 2) {
-        let isDone = await thisObj.buildConfig();
+        const isDone = await thisObj.buildConfig();
         if (isDone && isDone.status) {
           thisObj.writeJsonfile(isFileexists.dir, thisObj.getFilename(isFileexists.isOverwrite.flag), isDone.jsonObj);
         }

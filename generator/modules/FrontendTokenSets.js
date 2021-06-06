@@ -19,15 +19,14 @@ class FrontendTokenSets {
     this.addFrontendTokenSets = () => FrontendTokenSets.addFrontendTokenSets();
   }
 
-  static setObject = (curObj, ModalObj, ansObj) => {
-    return curObj.frontendTokenCategories[curObj.frontendTokenCategories.length - 1].frontendTokenSets.push({
+  static setObject = (curObj, ModalObj, ansObj) =>
+    curObj.frontendTokenCategories[curObj.frontendTokenCategories.length - 1].frontendTokenSets.push({
       ...ModalObj,
       ...ansObj,
     });
-  };
 
-  static addFrontendTokens = async (categoryLabel) => {
-    return await inquirer
+  static addFrontendTokens = async (categoryLabel) =>
+    await inquirer
       .prompt([
         {
           type: "confirm",
@@ -36,10 +35,9 @@ class FrontendTokenSets {
         },
       ])
       .then((answers) => answers.addfrontendtokens);
-  };
 
-  static addFrontendTokenSets = async () => {
-    return await inquirer
+  static addFrontendTokenSets = async () =>
+    await inquirer
       .prompt([
         {
           type: "confirm",
@@ -48,35 +46,34 @@ class FrontendTokenSets {
         },
       ])
       .then((answers) => answers.addfrontendTokenSets);
-  };
 
   init = async () => {
     try {
-      let thisObj = this;
+      const thisObj = this;
 
-      let modalObj = ModalObj._frontendTokenSets;
+      const modalObj = ModalObj._frontendTokenSets;
 
-      let questions = ModalObj._frontendTokenSetsQuestions;
+      const questions = ModalObj._frontendTokenSetsQuestions;
 
-      let getAns = await inquirer.prompt(questions).then((answers) => answers);
+      const getAns = await inquirer.prompt(questions).then((answers) => answers);
 
       thisObj.setObject(thisObj.finalConfig, modalObj, getAns);
 
       Log.print(JSON.stringify(thisObj.finalConfig, null, 2));
 
-      let isaddFrontendTokens = await thisObj.addFrontendTokens(getAns.label);
+      const isaddFrontendTokens = await thisObj.addFrontendTokens(getAns.label);
 
       if (isaddFrontendTokens) {
         Log.line(">");
 
-        let frontendTokens = new FrontendTokens(thisObj.finalConfig);
+        const frontendTokens = new FrontendTokens(thisObj.finalConfig);
 
-        let isDone = await frontendTokens.init();
+        const isDone = await frontendTokens.init();
 
         if (isDone && isDone.status) {
           Log.line("<");
 
-          let isaddFrontendTokenSets = await thisObj.addFrontendTokenSets();
+          const isaddFrontendTokenSets = await thisObj.addFrontendTokenSets();
 
           if (isaddFrontendTokenSets) {
             await thisObj.init();

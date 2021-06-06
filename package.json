@@ -1,22 +1,37 @@
 {
   "name": "stylebook-token-generator",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "description": "A CLI to help generate the stylebook token for Liferay DXP 7.3+",
-  "author": "JayGajjar <jaygajjar29@gmail.com>",
-  "license": "MIT",
-  "homepage": "https://github.com/JGGajjar/stylebook-token-generator",
+  "main": "./bin/stylebook.js",
   "scripts": {
-    "stylebook": "node ./generator/index.js"
+    "stylebook": "node ./bin/stylebook.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "devDependencies": {
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JGGajjar/stylebook-token-generator.git"
+  },
+  "author": "Jay Gajjar <jaygajjar29@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JGGajjar/stylebook-token-generator/issues"
+  },
+  "homepage": "https://github.com/JGGajjar/stylebook-token-generator#readme",
+  "dependencies": {
     "chalk": "^4.1.1",
     "figlet": "^1.5.0",
-    "inquirer": "^8.0.0"
+    "inquirer": "^8.1.0"
   },
   "keywords": [
     "stylebook",
     "Liferay DXP 7.3",
     "package",
     "generator"
-  ]
+  ],
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4"
+  }
 }

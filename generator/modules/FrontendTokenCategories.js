@@ -19,15 +19,15 @@ class FrontendTokenCategories {
     this.addFrontendTokenSet = (categoryLabel) => FrontendTokenCategories._addFrontendTokenSet(categoryLabel);
   }
 
-  static _setObject = (curObj, ModalObj, ansObj) => {
-    return curObj.frontendTokenCategories.push({
+  static _setObject = (curObj, ModalObj, ansObj) =>
+    // eslint-disable-next-line implicit-arrow-linebreak
+    curObj.frontendTokenCategories.push({
       ...ModalObj,
       ...ansObj,
     });
-  };
 
-  static _addFrontendTokenSet = async (categoryLabel) => {
-    return await inquirer
+  static _addFrontendTokenSet = async (categoryLabel) =>
+    await inquirer
       .prompt([
         {
           type: "confirm",
@@ -36,10 +36,9 @@ class FrontendTokenCategories {
         },
       ])
       .then((answers) => answers.addfrontendtokensets);
-  };
 
-  static _addFrontendCategory = async () => {
-    return await inquirer
+  static _addFrontendCategory = async () =>
+    await inquirer
       .prompt([
         {
           type: "confirm",
@@ -48,31 +47,30 @@ class FrontendTokenCategories {
         },
       ])
       .then((answers) => answers.addfrontendcategory);
-  };
 
   init = async () => {
     try {
-      let thisObj = this;
+      const thisObj = this;
 
-      let modalObj = ModalObj._frontendTokenCategories;
+      const modalObj = ModalObj._frontendTokenCategories;
 
-      let questions = ModalObj._frontendTokenCategoriesQuestions;
+      const questions = ModalObj._frontendTokenCategoriesQuestions;
 
-      let getAns = await inquirer.prompt(questions).then((answers) => answers);
+      const getAns = await inquirer.prompt(questions).then((answers) => answers);
 
       thisObj.setObject(thisObj.finalConfig, modalObj, getAns);
 
       Log.print(JSON.stringify(thisObj.finalConfig, null, 2));
 
-      let isaddFrontendTokenSet = await thisObj.addFrontendTokenSet(getAns.label);
+      const isaddFrontendTokenSet = await thisObj.addFrontendTokenSet(getAns.label);
 
       if (isaddFrontendTokenSet) {
         Log.line(">");
-        let frontendTokenSets = new FrontendTokenSets(thisObj.finalConfig);
-        let isDone = await frontendTokenSets.init();
+        const frontendTokenSets = new FrontendTokenSets(thisObj.finalConfig);
+        const isDone = await frontendTokenSets.init();
         if (isDone && isDone.status) {
           Log.line("<");
-          let addNewcategory = await thisObj.addFrontendCategory();
+          const addNewcategory = await thisObj.addFrontendCategory();
           if (addNewcategory) {
             Log.line("-");
             await thisObj.init();
@@ -82,7 +80,7 @@ class FrontendTokenCategories {
         }
       } else {
         Log.line("<");
-        let addNewcategory = await thisObj.addFrontendCategory();
+        const addNewcategory = await thisObj.addFrontendCategory();
         if (addNewcategory) {
           Log.line("-");
           await thisObj.init();
