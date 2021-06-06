@@ -66,26 +66,31 @@ class FrontendTokenCategories {
 
       if (isaddFrontendTokenSet) {
         Log.line(">");
+
         const frontendTokenSets = new FrontendTokenSets(thisObj.finalConfig);
-        const isDone = await frontendTokenSets.init();
-        if (isDone && isDone.status) {
-          Log.line("<");
-          const addNewcategory = await thisObj.addFrontendCategory();
-          if (addNewcategory) {
-            Log.line("-");
-            await thisObj.init();
-          } else {
-            return { status: true, jsonObj: thisObj.finalConfig };
-          }
-        }
-      } else {
+
+        await frontendTokenSets.init();
+
         Log.line("<");
+
         const addNewcategory = await thisObj.addFrontendCategory();
+
         if (addNewcategory) {
           Log.line("-");
           await thisObj.init();
         } else {
-          return { status: true, jsonObj: thisObj.finalConfig };
+          return await Promise.resolve({ status: true, jsonObj: thisObj.finalConfig });
+        }
+      } else {
+        Log.line("<");
+
+        const addNewcategory = await thisObj.addFrontendCategory();
+
+        if (addNewcategory) {
+          Log.line("-");
+          await thisObj.init();
+        } else {
+          return await Promise.resolve({ status: true, jsonObj: thisObj.finalConfig });
         }
       }
     } catch (e) {

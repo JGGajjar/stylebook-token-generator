@@ -78,11 +78,11 @@ class FrontendTokenSets {
           if (isaddFrontendTokenSets) {
             await thisObj.init();
           } else {
-            return { status: true, jsonObj: thisObj.finalConfig };
+            return await Promise.resolve({ status: true, jsonObj: thisObj.finalConfig });
           }
         }
       } else {
-        return { status: true, jsonObj: thisObj.finalConfig };
+        return await Promise.resolve({ status: true, jsonObj: thisObj.finalConfig });
       }
     } catch (e) {
       Log.message(e, "e");

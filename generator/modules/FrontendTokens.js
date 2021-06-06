@@ -1,3 +1,6 @@
+/* eslint-disable no-new-object */
+/* eslint-disable arrow-body-style */
+/* eslint-disable spaced-comment */
 /**
  * FileCopyrightText: JayGajjar <jaygajjar29@gmail.com>.
  * LicenseIdentifier: MIT
@@ -66,21 +69,24 @@ class FrontendTokens {
     tempObj.mappings[0].value = curObj.cssVariable;
 
     if (tempObj.validValues.length > 0) {
-      delete tempObj.editorType;
+      tempObj.editorType = "NC";
     } else if (tempObj.validValues.length === 0) {
-      delete tempObj.validValues;
+      tempObj.validValues = "NC";
     }
 
     mainObj.frontendTokenCategories[mainObj.frontendTokenCategories.length - 1].frontendTokenSets[
       mainObj.frontendTokenCategories[mainObj.frontendTokenCategories.length - 1].frontendTokenSets.length - 1
     ].frontendTokens.push({
-      ...tempObj,
+      ...Object.fromEntries(Object.entries(tempObj).filter((key) => key[1] != "NC")),
       ...Object.fromEntries(Object.entries(curObj).filter((key) => key[0] != "cssVariable")),
     });
+
+    tempObj.editorType = "";
+    tempObj.validValues = [];
   };
 
-  static _getConfirmation = async () =>
-    await inquirer
+  static _getConfirmation = async () => {
+    return await inquirer
       .prompt([
         {
           type: "confirm",
@@ -89,6 +95,7 @@ class FrontendTokens {
         },
       ])
       .then((answers) => answers.addnewtokens);
+  };
 
   init = async () => {
     try {
@@ -111,7 +118,7 @@ class FrontendTokens {
       if (isAddFrontendTokens) {
         await thisObj.init();
       } else {
-        return { status: true, jsonObj: thisObj.finalConfig };
+        return await Promise.resolve({ status: true, jsonObj: thisObj.finalConfig });
       }
     } catch (e) {
       Log.message(e, "e");
