@@ -4,8 +4,8 @@ A CLI to help generate the stylebook token for Liferay DXP 7.3.
 
 ## Generator use
 
-1. Install generator: `npm install stylebook-token-generator`.
-2. Run `npm run stylebook` to start stylebook generator and follow prompts and configure stylebook tokens for your theme.
+1. Install generator: `npm i stylebook-token-generator -g`.
+2. Run `stylebook` to start stylebook generator and follow prompts and configure stylebook tokens for your theme.
 
 Note: Define [theme name]-theme module directory path and the genereator will create a frontend-token-definition.json inside [theme name]-theme\src\WEB-INF\ directory.
 
